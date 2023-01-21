@@ -1,0 +1,4 @@
+requests
+pandas
+streamlit==1.17.0
+json

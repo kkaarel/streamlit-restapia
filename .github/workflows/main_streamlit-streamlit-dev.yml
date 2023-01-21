@@ -6,6 +6,8 @@ name: Build and deploy Python app to Azure Web App - streamlit-streamlit-dev
 
 on:
   push:
+    paths-ignore:
+      - 'terraform/**'
     branches:
       - main
   workflow_dispatch:

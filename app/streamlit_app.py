@@ -3,8 +3,6 @@ import pandas as pd
 import requests
 import json
 
-
-
 url = "https://avoindata.prh.fi/tr/v1/"
 verodata = "https://streamlitinfradev.blob.core.windows.net/datastreamlit/export.csv"
 
@@ -39,16 +37,16 @@ def kpis(Business_id):
     calulcated_data = df[df['Business_ID'].str.contains(Business_id, case=False, na=False)]
     tulo = calulcated_data['Verotettava tulo'].sum()
     vero = calulcated_data['Maksuunpannut verot yhteensä'].sum()
-    # WE CREATE FOUR COLUMNS HERE TO HOLD THE METRIC
+
     col1, col2 = st.columns(2)
 
     col1.metric(label = "Verotettava tulo",
     value = "{} €".format(tulo),
-    #delta = "{} %".format(round(float((Carbon - Carbon)/Carbon) *100, 1))
+
     )
     col2.metric(label="Maksuunpannut verot yhteensä",
     value = "{} €".format(vero),
-    #delta = "{} %".format(round(float((engery - Carbon)/Carbon) *100, 1))
+
     )
 
 def bar_chart_vero(Business_id):
@@ -56,8 +54,6 @@ def bar_chart_vero(Business_id):
     calulcated_data = df[df['Business_ID'].str.contains(Business_id, case=False, na=False)]
     return st.bar_chart(calulcated_data, y={"Verotettava tulo","Maksuunpannut verot yhteensä"}, x={"Verotettava tulo","Maksuunpannut verot yhteensä"})
     
-
-# Send the number using request post
 if st.button("Submit"):
     if Business_id is not None and Business_id.strip()!='':
         try:
